@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-3">
+        <h2>상품 목록</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>이미지</th>
+                <th>상품명</th>
+                <th>상품설명</th>
+                <th>가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data:${productDTOS}">
+                <td><img th:src="|/images/item/@${data.product_img}}|" width="150" height="100"> </td>
+                <td><a th:href="@{/product/productdetail(id=${data.product_id})}" th:text="${data.product_name}">노트북</a> </td>
+                <td th:text="${data.product_detail}"></td>
+                <td th:text="${data.product_price}">12000</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
